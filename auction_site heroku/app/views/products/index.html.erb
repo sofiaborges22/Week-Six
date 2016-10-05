@@ -1,0 +1,6 @@
+<h1>Products</h1>
+	<% @products.each do |product|%>
+		<strong><%=	link_to "#{product.title}", user_product_path(product.user_id, product.id)%></strong><br>
+		<%=	product.description %><br>
+		<%=	product.deadline %><br><br>
+<%end%>

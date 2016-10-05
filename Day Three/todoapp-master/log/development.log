@@ -1,0 +1,461 @@
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateUsers (20151116214227)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "location" varchar) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151116214227"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+Migrating to CreateTasks (20151116214307)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "tasks" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "user_id" integer) 
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_tasks_on_user_id" ON "tasks" ("user_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151116214307"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_tasks_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_tasks_on_user_id' AND type='index'
+[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("name", "location") VALUES (?, ?)  [["name", "John"], ["location", "USA"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "tasks" ("name", "user_id") VALUES (?, ?)[0m  [["name", "Task 1 for user: John"], ["user_id", 1]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "tasks" ("name", "user_id") VALUES (?, ?)  [["name", "Task 2 for user: John"], ["user_id", 1]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "tasks" ("name", "user_id") VALUES (?, ?)[0m  [["name", "Task 3 for user: John"], ["user_id", 1]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("name", "location") VALUES (?, ?)  [["name", "Jane"], ["location", "Spain"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "tasks" ("name", "user_id") VALUES (?, ?)[0m  [["name", "Task 1 for user: Jane"], ["user_id", 2]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "tasks" ("name", "user_id") VALUES (?, ?)  [["name", "Task 2 for user: Jane"], ["user_id", 2]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "tasks" ("name", "user_id") VALUES (?, ?)[0m  [["name", "Task 3 for user: Jane"], ["user_id", 2]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("name", "location") VALUES (?, ?)  [["name", "Bob"], ["location", "Australia"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "tasks" ("name", "user_id") VALUES (?, ?)[0m  [["name", "Task 1 for user: Bob"], ["user_id", 3]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "tasks" ("name", "user_id") VALUES (?, ?)  [["name", "Task 2 for user: Bob"], ["user_id", 3]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "tasks" ("name", "user_id") VALUES (?, ?)[0m  [["name", "Task 3 for user: Bob"], ["user_id", 3]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("name", "location") VALUES (?, ?)  [["name", "Charlie"], ["location", "China"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "tasks" ("name", "user_id") VALUES (?, ?)[0m  [["name", "Task 1 for user: Charlie"], ["user_id", 4]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "tasks" ("name", "user_id") VALUES (?, ?)  [["name", "Task 2 for user: Charlie"], ["user_id", 4]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "tasks" ("name", "user_id") VALUES (?, ?)[0m  [["name", "Task 3 for user: Charlie"], ["user_id", 4]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("name", "location") VALUES (?, ?)  [["name", "Jake"], ["location", "USA"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "tasks" ("name", "user_id") VALUES (?, ?)[0m  [["name", "Task 1 for user: Jake"], ["user_id", 5]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "tasks" ("name", "user_id") VALUES (?, ?)  [["name", "Task 2 for user: Jake"], ["user_id", 5]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "tasks" ("name", "user_id") VALUES (?, ?)[0m  [["name", "Task 3 for user: Jake"], ["user_id", 5]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("name", "location") VALUES (?, ?)  [["name", "Albert"], ["location", "Spain"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "tasks" ("name", "user_id") VALUES (?, ?)[0m  [["name", "Task 1 for user: Albert"], ["user_id", 6]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "tasks" ("name", "user_id") VALUES (?, ?)  [["name", "Task 2 for user: Albert"], ["user_id", 6]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "tasks" ("name", "user_id") VALUES (?, ?)[0m  [["name", "Task 3 for user: Albert"], ["user_id", 6]]
+  [1m[35m (0.8ms)[0m  commit transaction
+
+WelcomeMailer#welcome_email: processed outbound mail in 2.2ms
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddEmailToUsers (20160921093058)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mALTER TABLE "users" ADD "email" varchar[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160921093058"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_tasks_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_tasks_on_user_id' AND type='index'
+[0m
+  [1m[36mUser Load (1.9ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.9ms)[0m  UPDATE "users" SET "email" = ? WHERE "users"."id" = ?  [["email", "john@gmail.com"], ["id", 1]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (1.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "users" SET "email" = ? WHERE "users"."id" = ?  [["email", "jane@gmail.com"], ["id", 2]]
+  [1m[36m (2.3ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "users" SET "email" = ? WHERE "users"."id" = ?  [["email", "bob@gmail.com"], ["id", 3]]
+  [1m[36m (6.1ms)[0m  [1mcommit transaction[0m
+
+WelcomeMailer#welcome_email: processed outbound mail in 2.2ms
+
+WelcomeMailer#welcome_email: processed outbound mail in 23.6ms
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+
+WelcomeMailer#welcome_email: processed outbound mail in 14.8ms
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered welcome_mailer/welcome_email.html.erb within layouts/mailer (9.6ms)
+
+WelcomeMailer#welcome_email: processed outbound mail in 36.6ms
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered welcome_mailer/welcome_email.html.erb within layouts/mailer (11.8ms)
+
+WelcomeMailer#welcome_email: processed outbound mail in 35.0ms
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  Rendered welcome_mailer/welcome_email.html.erb within layouts/mailer (0.5ms)
+
+WelcomeMailer#welcome_email: processed outbound mail in 226.5ms
+
+Sent mail to john@gmail.com (14.1ms)
+Date: Wed, 21 Sep 2016 11:39:36 +0200
+From: borgessofia22@gmail.com
+To: john@gmail.com
+Message-ID: <57e2555820240_11dce3ff1ac43fa0c809de@Sofias-MacBook-Air.local.mail>
+Subject: Welcome, John
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <body>
+    <h1> Hi, John </h1>
+<p>
+	Welcome to my awesome website.
+	You are now a member! Your username is: John
+</p>
+  </body>
+</html>
+
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "users" SET "email" = ? WHERE "users"."id" = ?[0m  [["email", "sofiaborgess22@aol.com"], ["id", 1]]
+  [1m[35m (2.4ms)[0m  commit transaction
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered welcome_mailer/welcome_email.html.erb within layouts/mailer (0.1ms)
+
+WelcomeMailer#welcome_email: processed outbound mail in 17.4ms
+
+Sent mail to sofiaborgess22@aol.com (3.7ms)
+Date: Wed, 21 Sep 2016 11:40:49 +0200
+From: borgessofia22@gmail.com
+To: sofiaborgess22@aol.com
+Message-ID: <57e255a1260e1_11dce3ff1ac43fa0c81051@Sofias-MacBook-Air.local.mail>
+Subject: Welcome, John
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <body>
+    <h1> Hi, John </h1>
+<p>
+	Welcome to my awesome website.
+	You are now a member! Your username is: John
+</p>
+  </body>
+</html>
+
+  [1m[35m (1.4ms)[0m  begin transaction
+  [1m[36mSQL (0.8ms)[0m  [1mUPDATE "users" SET "email" = ? WHERE "users"."id" = ?[0m  [["email", "sofiaborges22@aol.com"], ["id", 1]]
+  [1m[35m (5.9ms)[0m  commit transaction
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered welcome_mailer/welcome_email.html.erb within layouts/mailer (1.3ms)
+
+WelcomeMailer#welcome_email: processed outbound mail in 35.0ms
+
+Sent mail to sofiaborges22@aol.com (11.8ms)
+Date: Wed, 21 Sep 2016 11:41:47 +0200
+From: borgessofia22@gmail.com
+To: sofiaborges22@aol.com
+Message-ID: <57e255dbc260c_11dce3ff1ac43fa0c8117d@Sofias-MacBook-Air.local.mail>
+Subject: Welcome, John
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <body>
+    <h1> Hi, John </h1>
+<p>
+	Welcome to my awesome website.
+	You are now a member! Your username is: John
+</p>
+  </body>
+</html>
+
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  Rendered welcome_mailer/welcome_email.html.erb within layouts/mailer (0.1ms)
+
+WelcomeMailer#welcome_email: processed outbound mail in 17.5ms
+
+Sent mail to sofiaborges22@aol.com (7.0ms)
+Date: Wed, 21 Sep 2016 11:43:29 +0200
+From: borgessofia22@gmail.com
+To: sofiaborges22@aol.com
+Message-ID: <57e2564198de8_11dce3ff1ac43fa0c8129e@Sofias-MacBook-Air.local.mail>
+Subject: Welcome, John
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <body>
+    <h1> Hi, John </h1>
+<p>
+	Welcome to my awesome website.
+	You are now a member! Your username is: John
+</p>
+  </body>
+</html>
+
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered welcome_mailer/welcome_email.html.erb within layouts/mailer (1.8ms)
+
+WelcomeMailer#welcome_email: processed outbound mail in 240.2ms
+
+Sent mail to sofiaborges22@aol.com (601.8ms)
+Date: Wed, 21 Sep 2016 11:47:53 +0200
+From: borgessofia22@gmail.com
+To: sofiaborges22@aol.com
+Message-ID: <57e257491a154_11e583fe36083f9f473fa@Sofias-MacBook-Air.local.mail>
+Subject: Welcome, John
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <body>
+    <h1> Hi, John </h1>
+<p>
+	Welcome to my awesome website.
+	You are now a member! Your username is: John
+</p>
+  </body>
+</html>
+
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  Rendered welcome_mailer/welcome_email.html.erb within layouts/mailer (0.1ms)
+
+WelcomeMailer#welcome_email: processed outbound mail in 18.2ms
+
+Sent mail to sofiaborges22@aol.com (1252.3ms)
+Date: Wed, 21 Sep 2016 11:49:55 +0200
+From: borgessofia22@gmail.com
+To: sofiaborges22@aol.com
+Message-ID: <57e257c3984a2_11e583fe36083f9f474b0@Sofias-MacBook-Air.local.mail>
+Subject: Welcome, John
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <body>
+    <h1> Hi, John </h1>
+<p>
+	Welcome to my awesome website.
+	You are now a member! Your username is: John
+</p>
+  </body>
+</html>
+
+  [1m[36mUser Load (1.6ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered welcome_mailer/welcome_email.html.erb within layouts/mailer (0.5ms)
+
+WelcomeMailer#welcome_email: processed outbound mail in 34.4ms
+
+Sent mail to sofiaborges22@aol.com (909.0ms)
+Date: Wed, 21 Sep 2016 12:02:53 +0200
+From: borgessofia22@gmail.com
+To: sofiaborges22@aol.com
+Message-ID: <57e25acdf1873_11e583fe36083f9f475a5@Sofias-MacBook-Air.local.mail>
+Subject: Welcome, John
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <body>
+    <h1> Hi, John </h1>
+<p>
+	Welcome to my awesome website.
+	You are now a member! Your username is: John
+</p>
+  </body>
+</html>
+
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  Rendered welcome_mailer/welcome_email.html.erb within layouts/mailer (0.1ms)
+
+WelcomeMailer#welcome_email: processed outbound mail in 20.7ms
+
+Sent mail to sofiaborges22@aol.com (924.2ms)
+Date: Wed, 21 Sep 2016 12:09:39 +0200
+From: borgessofia22@gmail.com
+To: sofiaborges22@aol.com
+Message-ID: <57e25c6342696_11e583fe36083f9f476ac@Sofias-MacBook-Air.local.mail>
+Subject: Welcome, John
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <body>
+    <h1> Hi, John </h1>
+<p>
+	Welcome to my awesome website.
+	You are now a member! Your username is: John
+</p>
+  </body>
+</html>
+
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered welcome_mailer/welcome_email.html.erb within layouts/mailer (1.9ms)
+
+WelcomeMailer#welcome_email: processed outbound mail in 229.0ms
+
+Sent mail to sofiaborges22@aol.com (1414.1ms)
+Date: Wed, 21 Sep 2016 12:10:26 +0200
+From: borgessofia22@gmail.com
+To: sofiaborges22@aol.com
+Message-ID: <57e25c9250d84_11fb23fd05083f9f423323@Sofias-MacBook-Air.local.mail>
+Subject: Welcome, John
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <body>
+    <h1> Hi, John </h1>
+<p>
+	Welcome to my awesome website.
+	You are now a member! Your username is: John
+</p>
+  </body>
+</html>
+
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  Rendered welcome_mailer/welcome_email.html.erb within layouts/mailer (0.1ms)
+
+WelcomeMailer#welcome_email: processed outbound mail in 16.1ms
+
+Sent mail to sofiaborges22@aol.com (1548.2ms)
+Date: Wed, 21 Sep 2016 12:10:41 +0200
+From: borgessofia22@gmail.com
+To: sofiaborges22@aol.com
+Message-ID: <57e25ca18145c_11fb23fd05083f9f423428@Sofias-MacBook-Air.local.mail>
+Subject: Welcome, John
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <body>
+    <h1> Hi, John </h1>
+<p>
+	Welcome to my awesome website.
+	You are now a member! Your username is: John
+</p>
+  </body>
+</html>
+
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered welcome_mailer/welcome_email.html.erb within layouts/mailer (2.6ms)
+
+WelcomeMailer#welcome_email: processed outbound mail in 257.4ms
+
+Sent mail to sofiaborges22@aol.com (1534.6ms)
+Date: Wed, 21 Sep 2016 12:10:57 +0200
+From: borgessofia22@gmail.com
+To: sofiaborges22@aol.com
+Message-ID: <57e25cb1e96dc_11fd73ff28dc3fa04553f2@Sofias-MacBook-Air.local.mail>
+Subject: Welcome, John
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <body>
+    <h1> Hi, John </h1>
+<p>
+	Welcome to my awesome website.
+	You are now a member! Your username is: John
+</p>
+  </body>
+</html>
+
+  [1m[35mUser Load (1.2ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  Rendered welcome_mailer/welcome_email.html.erb within layouts/mailer (0.5ms)
+
+WelcomeMailer#welcome_email: processed outbound mail in 30.2ms
+
+Sent mail to sofiaborges22@aol.com (1372.0ms)
+Date: Wed, 21 Sep 2016 12:11:56 +0200
+From: borgessofia22@gmail.com
+To: sofiaborges22@aol.com
+Message-ID: <57e25cec9f5ee_11fd73ff28dc3fa045542@Sofias-MacBook-Air.local.mail>
+Subject: Welcome, John
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <body>
+    <h1> Hi, John </h1>
+<p>
+	Welcome to my awesome website.
+	You are now a member! Your username is: John
+</p>
+  </body>
+</html>
+

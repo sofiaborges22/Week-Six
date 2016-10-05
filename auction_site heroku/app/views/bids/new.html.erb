@@ -1,0 +1,12 @@
+<h1>Place a bid!</h1>
+<h2>Good luck!</h2>
+
+
+<%= form_tag (product_bids_path method: :post) do |f|%>
+	<%= label_tag :email%>
+	<%= text_field_tag :email%>
+	<%= label_tag :amount%>
+	<%= number_field_tag :amount%>
+	<%= submit_tag "Bid!"%>
+<% end %>
+
